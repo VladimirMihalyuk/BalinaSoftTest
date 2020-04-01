@@ -3,6 +3,7 @@ package com.example.balinatest
 
 import android.app.Application
 import android.graphics.Bitmap
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.paging.DataSource
 import androidx.paging.LivePagedListBuilder
@@ -50,31 +51,29 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     fun loadImage(image: Bitmap){
         val file = bitmapToFile(image)
         val fileReqBody = RequestBody.create(MediaType.parse("multipart/form-data"), file)
-        // Create MultipartBody.Part using file request-body,file name and part name
+
         val photo = MultipartBody.Part.createFormData("photo", file.name, fileReqBody)
-        //Create request body with text description and text media type
+
         val name = RequestBody.create(MediaType.parse("multipart/form-data"),
             "Vladimir Mihalyuk")
 
         val typeId = RequestBody.create(MediaType.parse("multipart/form-data"),
             "$lastId")
 
-        viewModelScope.launch {
-            val call = client.upload(name, photo, typeId)
-            call.enqueue(object : Callback<ResponsePhoto> {
-                override fun onFailure(call: Call<ResponsePhoto>?, t: Throwable?) {
-                    showToast("Failure")
-                }
 
-                override fun onResponse(call: Call<ResponsePhoto>?, response: Response<ResponsePhoto>?) {
-                    if(response?.isSuccessful == true){
-                        showToast("Success")
-                    }else{
-                        showToast("Fail")
-                    }
+        val call = client.upload(name, photo, typeId)
+        call.enqueue(object : Callback<ResponsePhoto> {
+            override fun onFailure(call: Call<ResponsePhoto>?, t: Throwable?) {
+                showToast("Failure")
+            }
+            override fun onResponse(call: Call<ResponsePhoto>?, response: Response<ResponsePhoto>?) {
+                if(response?.isSuccessful == true){
+                    showToast("Success")
+                }else{
+                    showToast("Fail")
                 }
-            })
-        }
+            }
+        })
     }
 
     private fun showToast(text: String){
@@ -93,7 +92,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         return LivePagedListBuilder<Int, ContentItem>(dataSourceFactory, config)
     }
 
-    fun bitmapToFile(bitmap: Bitmap): File{
+    private fun bitmapToFile(bitmap: Bitmap): File{
         val file =  File(getApplication<Application>().applicationContext.cacheDir, "photo")
         file.createNewFile()
 
