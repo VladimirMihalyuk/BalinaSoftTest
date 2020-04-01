@@ -4,10 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="100dp"
+    android:background="@drawable/custom_border"
     android:orientation="vertical">
 
     <ImageView
-        android:id="@+id/image"
+        android:id="@+id/imageView"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginStart="8dp"
@@ -24,15 +25,15 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         tools:text="Volodya"
-        app:layout_constraintStart_toEndOf="@+id/image"
-        app:layout_constraintTop_toTopOf="@+id/image" />
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/imageView" />
 
     <TextView
-        android:id="@+id/id"
+        android:id="@+id/idItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         tools:text="id:87546"
-        app:layout_constraintBottom_toBottomOf="@+id/image"
-        app:layout_constraintStart_toEndOf="@+id/image" />
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintStart_toEndOf="@+id/imageView" />
 </androidx.constraintlayout.widget.ConstraintLayout>

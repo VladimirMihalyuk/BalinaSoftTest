@@ -15,7 +15,7 @@ data class ApiResponse(
 	val page: Int? = null,
 
 	@field:SerializedName("content")
-	val content: List<ContentItem?>? = null,
+	val content: List<ContentItem>,
 
 	@field:SerializedName("totalElements")
 	val totalElements: Int? = null
