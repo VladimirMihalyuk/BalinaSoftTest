@@ -1,6 +1,7 @@
 package com.example.balinatest
 
 
+import android.graphics.Bitmap
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.paging.DataSource
@@ -13,8 +14,12 @@ import androidx.lifecycle.viewModelScope
 
 class MainViewModel : ViewModel() {
     private var postsLiveData  : LiveData<PagedList<ContentItem>>
-    private   val client = ApiClient.getClient()
+    private val client = ApiClient.getClient()
+    private var lastId:Int =0
 
+    fun setLatId(value: Int){
+        lastId = value
+    }
 
     init {
         val config = PagedList.Config.Builder()
@@ -26,6 +31,12 @@ class MainViewModel : ViewModel() {
 
     fun getPosts():LiveData<PagedList<ContentItem>> = postsLiveData
 
+    fun loadImage(image: Bitmap){
+
+    }
+
+
+
     private fun initializedPagedListBuilder(config: PagedList.Config):
             LivePagedListBuilder<Int, ContentItem> {
 
@@ -36,4 +47,5 @@ class MainViewModel : ViewModel() {
         }
         return LivePagedListBuilder<Int, ContentItem>(dataSourceFactory, config)
     }
+
 }
