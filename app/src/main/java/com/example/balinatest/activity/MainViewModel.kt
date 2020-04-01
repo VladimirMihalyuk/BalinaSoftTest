@@ -1,9 +1,8 @@
-package com.example.balinatest
+package com.example.balinatest.activity
 
 
 import android.app.Application
 import android.graphics.Bitmap
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.paging.DataSource
 import androidx.paging.LivePagedListBuilder
@@ -14,7 +13,6 @@ import androidx.lifecycle.viewModelScope
 import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import com.example.balinatest.network.data_models.ContentItem
-import kotlinx.coroutines.launch
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream

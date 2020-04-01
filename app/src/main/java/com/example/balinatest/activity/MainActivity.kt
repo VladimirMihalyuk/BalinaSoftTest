@@ -1,16 +1,15 @@
-package com.example.balinatest
+package com.example.balinatest.activity
 
 import android.content.Intent
 import android.graphics.Bitmap
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Log
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.example.balinatest.R
 import com.example.balinatest.paging.PhotoAdapter
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.list_item.*
 
 class MainActivity : AppCompatActivity() {
     private lateinit var adapter: PhotoAdapter

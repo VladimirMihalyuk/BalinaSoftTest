@@ -9,7 +9,7 @@
     android:padding="4dp"
     android:paddingStart="8dp"
     android:paddingEnd="8dp"
-    tools:context=".MainActivity">
+    tools:context=".activity.MainActivity">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
