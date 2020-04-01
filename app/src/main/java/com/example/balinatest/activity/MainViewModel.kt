@@ -30,8 +30,6 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     private val client = ApiClient.getClient()
     private var lastId:Int =0
 
-
-
     fun setLatId(value: Int){
         lastId = value
     }
@@ -48,9 +46,11 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     fun loadImage(image: Bitmap){
         val file = bitmapToFile(image)
-        val fileReqBody = RequestBody.create(MediaType.parse("multipart/form-data"), file)
+        val fileReqBody
+                = RequestBody.create(MediaType.parse("multipart/form-data"), file)
 
-        val photo = MultipartBody.Part.createFormData("photo", file.name, fileReqBody)
+        val photo
+                = MultipartBody.Part.createFormData("photo", file.name, fileReqBody)
 
         val name = RequestBody.create(MediaType.parse("multipart/form-data"),
             "Vladimir Mihalyuk")
@@ -64,7 +64,8 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             override fun onFailure(call: Call<ResponsePhoto>?, t: Throwable?) {
                 showToast("Failure")
             }
-            override fun onResponse(call: Call<ResponsePhoto>?, response: Response<ResponsePhoto>?) {
+            override fun onResponse(call: Call<ResponsePhoto>?,
+                                    response: Response<ResponsePhoto>?) {
                 if(response?.isSuccessful == true){
                     showToast("Success")
                 }else{

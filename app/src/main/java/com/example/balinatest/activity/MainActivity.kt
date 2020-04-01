@@ -45,12 +45,9 @@ class MainActivity : AppCompatActivity() {
         super.onActivityResult(requestCode,resultCode,data)
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             val imageBitmap = data?.extras?.get("data") as Bitmap?
-
             if(imageBitmap != null){
-
                 mainViewModel.loadImage(imageBitmap)
             }
         }
     }
-
 }

@@ -16,8 +16,8 @@ interface ApiService {
     @Multipart
     @POST("/api/v2/photo")
     fun upload(
-        @Part("name ") name : RequestBody,
+        @Part("name") name : RequestBody,
         @Part file: MultipartBody.Part,
-        @Part("typeId ") typeId : RequestBody
+        @Part("typeId") typeId : RequestBody
     ): Call<ResponsePhoto>
 }

@@ -12,9 +12,11 @@ import com.example.balinatest.R
 import com.example.balinatest.network.data_models.ContentItem
 import kotlinx.android.synthetic.main.list_item.view.*
 
-class PhotoAdapter(val callback: (id: Int) -> Unit) : PagedListAdapter<ContentItem, PhotoAdapter.MyViewHolder>(DiffUtilCallBack()) {
+class PhotoAdapter(val callback: (id: Int) -> Unit)
+    : PagedListAdapter<ContentItem, PhotoAdapter.MyViewHolder>(DiffUtilCallBack()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false)
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.list_item, parent, false)
         return MyViewHolder(view)
     }
 

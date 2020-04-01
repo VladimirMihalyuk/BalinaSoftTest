@@ -36,8 +36,8 @@ class PostsDataSource(private val scope: CoroutineScope, private val apiService:
                         = apiService.getPhotoTypes(params.startPosition / params.loadSize)
                 if(response.isSuccessful){
                     val listing = response.body()?.content
-                    if(listing != null
-                        && (response.body()?.totalElements ?: Int.MAX_VALUE) > params.startPosition){
+                    if(listing != null &&
+                        (response.body()?.totalElements ?: Int.MAX_VALUE) > params.startPosition){
                         callback.onResult(listing)
                     }
                 }
