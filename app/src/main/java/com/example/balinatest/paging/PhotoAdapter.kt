@@ -30,10 +30,18 @@ class PhotoAdapter : PagedListAdapter<ContentItem, PhotoAdapter.MyViewHolder>(Di
         val id = itemView.idItem
 
         fun bindPost(item : ContentItem){
-            image.load(item.image?.replace("http", "https")){
-                crossfade(true)
-                transformations(CircleCropTransformation())
+            if(item.image != null){
+                image.load(item.image?.replace("http", "https")){
+                    crossfade(true)
+                    transformations(CircleCropTransformation())
+                }
+            }else{
+                image.load(R.drawable.question){
+                    crossfade(true)
+                    transformations(CircleCropTransformation())
+                }
             }
+
             name.text = item.name
             id.text = "id:" + item.id
         }
