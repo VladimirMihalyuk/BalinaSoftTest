@@ -10,7 +10,7 @@ import androidx.paging.PagedList
 import com.example.balinatest.network.ApiClient
 import com.example.balinatest.paging.PostsDataSource
 import androidx.lifecycle.viewModelScope
-import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import com.example.balinatest.network.data_models.ContentItem
 import kotlinx.coroutines.launch
@@ -63,16 +63,24 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             val call = client.upload(name, photo, typeId)
             call.enqueue(object : Callback<ResponsePhoto> {
                 override fun onFailure(call: Call<ResponsePhoto>?, t: Throwable?) {
+                    showToast("Failure")
                 }
 
                 override fun onResponse(call: Call<ResponsePhoto>?, response: Response<ResponsePhoto>?) {
+                    if(response?.isSuccessful == true){
+                        showToast("Success")
+                    }else{
+                        showToast("Fail")
+                    }
                 }
             })
-
         }
     }
 
-
+    private fun showToast(text: String){
+        Toast.makeText(getApplication<Application>().applicationContext,
+            text, Toast.LENGTH_LONG).show()
+    }
 
     private fun initializedPagedListBuilder(config: PagedList.Config):
             LivePagedListBuilder<Int, ContentItem> {
@@ -86,7 +94,6 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun bitmapToFile(bitmap: Bitmap): File{
-
         val file =  File(getApplication<Application>().applicationContext.cacheDir, "photo")
         file.createNewFile()
 
@@ -99,9 +106,6 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         fos.close()
         return file
     }
-
 }
 
-private fun <T> Call<T>.enqueue() {
-    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-}
+
